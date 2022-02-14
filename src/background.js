@@ -5,6 +5,8 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 import path from 'path';
+const log = require('electron-log');
+
 
 
 
@@ -70,6 +72,7 @@ async function createWindow() {
   }
 
   console.log('autoupdate')
+  log('AUTOUPDATE')
   autoUpdater.checkForUpdatesAndNotify();
 }
 
@@ -130,12 +133,14 @@ ipcMain.handle('app_version', () => {
 
 autoUpdater.on('update-available', () => {
   console.log('app update available')
+  log('app update available')
   win.webContents.send('update_available');
   return 'update_available';
 });
 autoUpdater.on('update-downloaded', () => {
   win.webContents.send('update_downloaded');
   console.log('updating');
+  log('updating');
   autoUpdater.quitAndInstall();
 });
 
