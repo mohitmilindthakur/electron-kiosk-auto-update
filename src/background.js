@@ -130,10 +130,11 @@ ipcMain.handle('app_version', () => {
 
 autoUpdater.on('update-available', () => {
   console.log('app update available')
+  win.webContents.send('update_available');
   return 'update_available';
 });
 autoUpdater.on('update-downloaded', () => {
-  // win.webContents.send('update_downloaded');
+  win.webContents.send('update_downloaded');
   console.log('updating');
   autoUpdater.quitAndInstall();
 });
