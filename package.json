@@ -1,6 +1,6 @@
 {
   "name": "hsse-kiosk",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,7 +15,6 @@
   "dependencies": {
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
-    "electron-log": "^4.4.6",
     "electron-updater": "^4.6.5",
     "video.js": "^7.17.0",
     "vue": "^3.0.0",
