@@ -96,9 +96,15 @@ export default {
       this.appVersion = appVersion;
     });
 
-    // window.electron.ipcRenderer.invoke("update_available").then( () => {
-    //   this.message = "A new update is available. Downloading now...";
-    // });
+    window.electron.ipcRenderer.on("update_available", () => {
+      window.electron.ipcRenderer.removeAllListeners("update_available");
+      this.message = "A new update is available. Downloading now...";
+    });
+    window.electron.ipcRenderer.on("update_downloaded", () => {
+      window.electron.ipcRenderer.removeAllListeners("update_downloaded");
+      this.message =
+        "Update Downloaded. It will be installed on restart. Restarting now";
+    });
   },
 };
 </script>

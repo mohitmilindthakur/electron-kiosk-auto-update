@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path')
 const os = require("os")
-const { contextBridge, ipcRenderer } = require('electron')
+const { ipcRenderer } = require('electron')
 
 class VideoApi {
     constructor() {
@@ -37,13 +37,11 @@ class VideoApi {
 
 const video = new VideoApi();
 // let version = console.log(app.getVersion);
-contextBridge.exposeInMainWorld(
-    'electron',
-    {
-        getVideos() {
-            return video.videos;
-        },
-        ipcRenderer,
-        ipcRendererOn: ipcRenderer.on
-    }
-)
+
+window.electron = {
+    getVideos() {
+        return video.videos;
+    },
+    ipcRenderer,
+    ipcRendererOn: ipcRenderer.on
+}
