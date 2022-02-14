@@ -98,10 +98,12 @@ export default {
 
     window.electron.ipcRenderer.on("update_available", () => {
       window.electron.ipcRenderer.removeAllListeners("update_available");
+      console.log("UPDATE AVAILABLE")
       this.message = "A new update is available. Downloading now...";
     });
     window.electron.ipcRenderer.on("update_downloaded", () => {
       window.electron.ipcRenderer.removeAllListeners("update_downloaded");
+      console.log("UPDATE DOWNLOADED")
       this.message =
         "Update Downloaded. It will be installed on restart. Restarting now";
     });
